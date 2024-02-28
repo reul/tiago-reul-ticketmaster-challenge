@@ -10,6 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
+import space.reul.cleanarchitectureexample.app.ui.composables.EventGrid
 import space.reul.cleanarchitectureexample.app.ui.composables.ImageGrid
 import space.reul.cleanarchitectureexample.app.ui.theme.CleanArchitectureExampleTheme
 
@@ -27,9 +28,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val flow = viewModel.shibaFlow.collectAsState(emptyList())
+                    val flow = viewModel.eventsFlow.collectAsState()
 
-                    ImageGrid(flow.value)
+                    EventGrid(flow.value)
                 }
             }
         }

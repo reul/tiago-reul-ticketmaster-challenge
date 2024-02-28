@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
 
     testImplementation(libs.mockk)
     testImplementation(kotlin("test"))

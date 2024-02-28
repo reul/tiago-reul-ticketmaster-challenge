@@ -9,8 +9,8 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 class ListShibasTest {
-    private lateinit var subject: ListShibas
-    private lateinit var repository: ListShibas.Repository
+    private lateinit var subject: ListEvents
+    private lateinit var repository: ListEvents.Repository
 
     @BeforeTest
     fun setUp() {
@@ -18,7 +18,7 @@ class ListShibasTest {
 
         coEvery { repository.listShibas() } returns arrayListOf()
 
-        subject = ListShibas(
+        subject = ListEvents(
             Dispatchers.Unconfined,
             repository
         )

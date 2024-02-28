@@ -1,9 +1,12 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt.android)
     kotlin("kapt")
 }
+
 
 android {
     namespace = "space.reul.cleanarchitectureexample.app"
@@ -22,7 +25,18 @@ android {
         }
     }
 
+    // We're adding this so we can read the API key from the local.properties file into BuildConfig
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
+        all {
+            // TICKETMASTER_API_KEY is a secret key that is not checked into source control
+            val apiKey: String = gradleLocalProperties(rootDir).getProperty("TICKETMASTER_API_KEY") ?: ""
+            buildConfigField("String", "TICKETMASTER_API_KEY", "\"$apiKey\"")
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(

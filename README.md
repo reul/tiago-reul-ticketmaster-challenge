@@ -1,3 +1,14 @@
+# TicketMaster Interview challenge project
+
+Requirements: 
+- TICKETMASTER_API_KEY in local.properties file. It's a secret key and should not be checked into source control.
+  - Example: TICKETMASTER_API_KEY=1234567890 (no quotes or spaces)
+- JDK 19 is required to build and run the project.
+- Android Studio Hedgehog 2020.3.1
+- Android SDK 34
+
+
+
 # Clean Architecture Example
 
 This is an Android project showcasing the implementation of Clean Architecture in a modular structure with Kotlin. The project is divided into three modules: `domain`, `data`, and `app`. It utilizes HILT for dependency injection and Jetpack Compose for the user interface.
