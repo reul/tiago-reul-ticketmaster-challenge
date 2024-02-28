@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.LifecycleObserver
 import dagger.hilt.android.AndroidEntryPoint
 import space.reul.cleanarchitectureexample.app.ui.composables.Events
 import space.reul.cleanarchitectureexample.app.ui.theme.CleanArchitectureExampleTheme
@@ -20,6 +21,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        lifecycle.addObserver(viewModel)
 
         setContent {
             CleanArchitectureExampleTheme {
@@ -41,10 +44,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.onResume()
     }
 }

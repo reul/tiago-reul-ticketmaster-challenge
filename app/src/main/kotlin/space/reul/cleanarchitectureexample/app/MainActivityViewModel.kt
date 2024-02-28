@@ -6,6 +6,8 @@ import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +33,7 @@ class MainActivityViewModel @Inject constructor(
     private val application: Application,
     private val repository: ListEvents.Repository,
     private val savedStateHandle: SavedStateHandle
-) : AndroidViewModel(application) {
+) : AndroidViewModel(application), DefaultLifecycleObserver {
 
     private val _eventsFlow: MutableStateFlow<UiState<EventList>> =
         MutableStateFlow(UiState.Loading)
@@ -82,13 +84,13 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    fun onResume() {
+    override fun onResume(owner: LifecycleOwner) {
         load()
         application.getSystemService(ConnectivityManager::class.java)
             .registerNetworkCallback(networkRequest, networkCallback)
     }
 
-    fun onPause() {
+    override fun onPause(owner: LifecycleOwner) {
         loadTask?.cancel()
         application.getSystemService(ConnectivityManager::class.java)
             .unregisterNetworkCallback(networkCallback)
