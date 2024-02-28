@@ -28,9 +28,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.secondaryContainer
                 ) {
-                    val flow = viewModel.eventsFlow.collectAsState()
+                    val eventsFlow = viewModel.eventsFlow.collectAsState()
+                    val isConnectedFlow = viewModel.networkAvailableFlow.collectAsState()
 
-                    ScreenWrapper(Modifier.fillMaxSize(), flow.value) { modifier, data ->
+                    ScreenWrapper(
+                        modifier=Modifier.fillMaxSize(),
+                        uiState=eventsFlow.value,
+                        showDisconnectedMessage = !isConnectedFlow.value
+                        ) { modifier, data ->
                         Events(modifier, data)
                     }
                 }
