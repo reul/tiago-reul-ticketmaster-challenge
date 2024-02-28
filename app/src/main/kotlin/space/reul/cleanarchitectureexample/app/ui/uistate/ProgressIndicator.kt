@@ -10,8 +10,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import space.reul.cleanarchitectureexample.app.R
 
 /**
  *
@@ -22,7 +23,7 @@ fun FullScreenProgressIndicator(modifier: Modifier = Modifier) {
         Box {
             CircularProgressIndicator(
                 Modifier
-                    .width(48.dp)
+                    .width(dimensionResource(id = R.dimen.progress_indicator_size))
                     .align(Alignment.Center),
                 color = MaterialTheme.colorScheme.secondary,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant

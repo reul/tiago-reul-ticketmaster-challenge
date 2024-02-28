@@ -25,8 +25,10 @@ import javax.inject.Inject
 /**
  * View model for the main activity.
  *
+ * @property application The application to use for the view model.
  * @property repository The repository to get the events from.
  * @property savedStateHandle The saved state handle to use for the view model.
+ *
  */
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -37,9 +39,17 @@ class MainActivityViewModel @Inject constructor(
 
     private val _eventsFlow: MutableStateFlow<UiState<EventList>> =
         MutableStateFlow(UiState.Loading)
+
+    /**
+     * A state flow of [UiState] that should, if everything goes well, emit a [UiState.Success] of events.
+     */
     val eventsFlow: StateFlow<UiState<EventList>> = _eventsFlow
 
     private val _networkAvailableFlow = MutableStateFlow(isNetworkUnavailable())
+
+    /**
+     * A state flow of [Boolean] that should emit true if the network is available and false if it is not.
+     */
     val networkAvailableFlow: StateFlow<Boolean> = _networkAvailableFlow
 
     private var loadTask: Job? = null
@@ -66,6 +76,9 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
+    /**
+     * (Re-)loads the events.
+     */
     fun load() {
         if (loadTask?.isActive == true) return
 

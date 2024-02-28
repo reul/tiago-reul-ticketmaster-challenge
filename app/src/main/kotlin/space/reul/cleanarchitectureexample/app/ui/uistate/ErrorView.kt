@@ -19,9 +19,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import space.reul.cleanarchitectureexample.app.R
 import space.reul.cleanarchitectureexample.app.ui.theme.Spacing
 import space.reul.imglytrial.app.ui.shared.toggle
@@ -43,7 +43,7 @@ fun ErrorView(modifier: Modifier = Modifier, message: String, exception: Excepti
             Icon(
                 modifier = Modifier
                     .padding(top = Spacing.double)
-                    .size(32.dp)
+                    .size(dimensionResource(id = R.dimen.error_view_icon_size))
                     .align(Alignment.CenterHorizontally),
                 imageVector = Icons.Default.Warning,
                 tint = MaterialTheme.colorScheme.error,
@@ -73,8 +73,7 @@ fun ErrorView(modifier: Modifier = Modifier, message: String, exception: Excepti
                         modifier = Modifier.background(MaterialTheme.colorScheme.tertiaryContainer)
                     ) {
                         Text(
-                            modifier = Modifier
-                                .padding(Spacing.double),
+                            modifier = Modifier.padding(Spacing.double),
                             text = it
                         )
                     }

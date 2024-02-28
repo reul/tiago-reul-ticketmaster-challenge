@@ -15,8 +15,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import space.reul.cleanarchitectureexample.app.R
 import space.reul.cleanarchitectureexample.app.ui.theme.Spacing
 import space.reul.cleanarchitectureexample.domain.model.City
 import space.reul.cleanarchitectureexample.domain.model.DateInfo
@@ -27,14 +28,17 @@ import space.reul.cleanarchitectureexample.domain.model.Image
 import space.reul.cleanarchitectureexample.domain.model.State
 import space.reul.cleanarchitectureexample.domain.model.Venue
 
+/**
+ * A composable that displays a single event as a Card.
+ */
 @Composable
 fun EventItem(modifier: Modifier = Modifier, event: Event) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .requiredHeight(140.dp)
+            .requiredHeight(dimensionResource(id = R.dimen.event_card_height))
             .padding(Spacing.half),
-        elevation = CardDefaults.cardElevation(4.dp),
+        elevation = CardDefaults.cardElevation(dimensionResource(id = R.dimen.card_elevation)),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background
         ),
