@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import space.reul.cleanarchitectureexample.domain.model.EventList
 import space.reul.cleanarchitectureexample.domain.usecase.ListEvents
+import space.reul.imglytrial.app.ui.state.UiState
 import javax.inject.Inject
 
 
@@ -28,19 +29,25 @@ class MainActivityViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val eventsStateFlow: MutableStateFlow<EventList> = MutableStateFlow(EventList(arrayListOf()))
-    val eventsFlow: StateFlow<EventList> = eventsStateFlow
+    private val eventsStateFlow: MutableStateFlow<UiState<EventList>> = MutableStateFlow(UiState.Loading)
+    val eventsFlow: StateFlow<UiState<EventList>> = eventsStateFlow
     private var loadTask: Job? = null
 
     fun onResume() {
         if (loadTask?.isActive == true) return
 
         loadTask = viewModelScope.launch {
-            val listEvents = newUseCase()
-            val output = listEvents().also {
-                Log.d("MainActivityViewModel", "newUseCase output: $it")
+            try {
+                val listEvents = newUseCase()
+                val output = listEvents().also {
+                    Log.d("MainActivityViewModel", "newUseCase output: $it")
+                }
+                eventsStateFlow.value = UiState.Success(output)
+
+            } catch (t: Throwable) {
+                eventsStateFlow.value = UiState.Failure(t as Exception)
+
             }
-            eventsStateFlow.value = output
         }
     }
 

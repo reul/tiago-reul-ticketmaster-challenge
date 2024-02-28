@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import space.reul.cleanarchitectureexample.app.ui.composables.Events
 import space.reul.cleanarchitectureexample.app.ui.theme.CleanArchitectureExampleTheme
+import space.reul.cleanarchitectureexample.app.ui.uistate.ScreenWrapper
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -29,7 +30,9 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val flow = viewModel.eventsFlow.collectAsState()
 
-                    Events(flow.value)
+                    ScreenWrapper(Modifier.fillMaxSize(), flow.value) { modifier, data ->
+                        Events(modifier, data)
+                    }
                 }
             }
         }

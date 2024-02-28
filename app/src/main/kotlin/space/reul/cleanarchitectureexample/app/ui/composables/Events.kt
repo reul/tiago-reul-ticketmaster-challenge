@@ -10,12 +10,12 @@ import space.reul.cleanarchitectureexample.domain.model.EventList
 import space.reul.cleanarchitectureexample.domain.model.Image
 
 @Composable
-fun Events(eventList: EventList, modifier: Modifier = Modifier) {
+fun Events(modifier: Modifier = Modifier, eventList: EventList) {
     LazyColumn(
         modifier = modifier,
     ) {
         eventList.events.forEach { event ->
-            item { EventItem(event=event) }
+            item { EventItem(event = event) }
         }
     }
 }
@@ -25,8 +25,8 @@ fun Events(eventList: EventList, modifier: Modifier = Modifier) {
 fun EventGridPreview() {
     CleanArchitectureExampleTheme {
         Events(
-            EventList(
-                arrayListOf(
+            eventList = EventList(
+                events = arrayListOf(
                     Event(images = listOf(Image(url = "")))
                 )
             )
