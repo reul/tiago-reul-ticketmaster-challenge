@@ -10,8 +10,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import space.reul.cleanarchitectureexample.app.ui.composables.EventGrid
-import space.reul.cleanarchitectureexample.app.ui.composables.ImageGrid
+import space.reul.cleanarchitectureexample.app.ui.composables.Events
 import space.reul.cleanarchitectureexample.app.ui.theme.CleanArchitectureExampleTheme
 
 @AndroidEntryPoint
@@ -26,11 +25,11 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.secondaryContainer
                 ) {
                     val flow = viewModel.eventsFlow.collectAsState()
 
-                    EventGrid(flow.value)
+                    Events(flow.value)
                 }
             }
         }

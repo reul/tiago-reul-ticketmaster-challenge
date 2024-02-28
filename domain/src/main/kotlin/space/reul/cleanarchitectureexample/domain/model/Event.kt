@@ -27,7 +27,7 @@ data class Event (
     val ageRestrictions: AgeRestrictions? = null,
     val ticketing: Ticketing? = null,
     val links: EventLinks? = null,
-    val embedded: EventEmbedded? = null,
+    val _embedded: EventEmbedded? = null,
     val outlets: List<Outlet>? = null,
     val doorsTimes: DoorsTimes? = null
 )

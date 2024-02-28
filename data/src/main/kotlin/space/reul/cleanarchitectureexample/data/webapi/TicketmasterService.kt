@@ -22,7 +22,7 @@ class TicketmasterService {
 //      .addInterceptor(AuthorizationInterceptor)
         .addInterceptor(HttpLoggingInterceptor().apply {
             val isDebug = true // TODO: inject retrofit instance, move this to DI module and use BuildConfig.DEBUG
-            level = HttpLoggingInterceptor.Level.BODY
+            if (isDebug) level = HttpLoggingInterceptor.Level.BODY
         })
         .build()
 

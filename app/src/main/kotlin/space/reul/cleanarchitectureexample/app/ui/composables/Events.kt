@@ -1,24 +1,21 @@
 package space.reul.cleanarchitectureexample.app.ui.composables
 
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import space.reul.cleanarchitectureexample.app.ui.theme.CleanArchitectureExampleTheme
 import space.reul.cleanarchitectureexample.domain.model.Event
 import space.reul.cleanarchitectureexample.domain.model.EventList
+import space.reul.cleanarchitectureexample.domain.model.Image
 
 @Composable
-fun EventGrid(eventList: EventList, modifier: Modifier = Modifier) {
-    LazyVerticalGrid(
+fun Events(eventList: EventList, modifier: Modifier = Modifier) {
+    LazyColumn(
         modifier = modifier,
-        columns = GridCells.Adaptive(150.dp)
     ) {
-        val urls = eventList.events.mapNotNull { it.images?.firstOrNull()?.url }
-        urls.forEach { url ->
-            item { AsyncImageCell(url) }
+        eventList.events.forEach { event ->
+            item { EventItem(event=event) }
         }
     }
 }
@@ -27,6 +24,12 @@ fun EventGrid(eventList: EventList, modifier: Modifier = Modifier) {
 @Composable
 fun EventGridPreview() {
     CleanArchitectureExampleTheme {
-        ImageGrid(listOf("https://cdn.shibe.online/shibes/36083b6b1f07865085681235e4b4b174f60b7db1.jpg"))
+        Events(
+            EventList(
+                arrayListOf(
+                    Event(images = listOf(Image(url = "")))
+                )
+            )
+        )
     }
 }
