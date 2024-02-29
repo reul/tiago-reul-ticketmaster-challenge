@@ -9,11 +9,11 @@ plugins {
 
 
 android {
-    namespace = "space.reul.cleanarchitectureexample.app"
+    namespace = "space.reul.ticketmasterchallenge.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "space.reul.cleanarchitectureexample.app"
+        applicationId = "space.reul.ticketmasterchallenge.app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "space.reul.cleanarchitectureexample.data"
+    namespace = "space.reul.ticketmasterchallenge.data"
     compileSdk = 34
 
     defaultConfig {

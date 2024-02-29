@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Clean Architecture Example</string>
+    <string name="app_name">Ticketmaster Code Challenge</string>
     <string name="show_stacktrace">Show stacktrace</string>
     <string name="hide_stacktrace">Hide stacktrace</string>
     <string name="generic_error">An error has occurred</string>
