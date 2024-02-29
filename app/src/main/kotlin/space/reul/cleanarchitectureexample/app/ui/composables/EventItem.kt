@@ -67,6 +67,8 @@ fun EventItem(modifier: Modifier = Modifier, event: Event) {
                     maxLines = 1,
                 )
                 Spacer(modifier = Modifier.weight(1f))
+
+
                 Text(
                     text = event.dates?.start?.localDate.toString(),
                     style = MaterialTheme.typography.bodyMedium,

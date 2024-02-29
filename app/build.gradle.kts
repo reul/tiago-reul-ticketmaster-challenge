@@ -66,7 +66,6 @@ android {
 }
 
 dependencies {
-
     implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
@@ -79,6 +78,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.coil.compose)
     implementation(libs.hilt.android)
+
+
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)

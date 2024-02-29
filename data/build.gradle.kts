@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    kotlin("kapt")
 }
 
 android {
@@ -41,7 +42,12 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
-    implementation("com.squareup.okhttp3:logging-interceptor:4.9.2")
+
+    implementation(libs.androidx.room.runtime)
+    api(libs.androidx.room.ktx)
+
+    kapt(libs.androidx.room.compiler)
+
 
     testImplementation(libs.mockk)
     testImplementation(kotlin("test"))
@@ -50,4 +56,8 @@ dependencies {
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }
