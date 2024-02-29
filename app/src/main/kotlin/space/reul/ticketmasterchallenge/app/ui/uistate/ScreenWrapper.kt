@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import space.reul.imglytrial.app.ui.state.UiState
 import space.reul.ticketmasterchallenge.app.R
 import space.reul.ticketmasterchallenge.app.ui.theme.Spacing
-import space.reul.imglytrial.app.ui.state.UiState
 
 /**
  * Utility composable that handles [UiState] to display:
@@ -47,7 +47,7 @@ fun <T> ScreenWrapper(
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "Network unavailable",
+                    text = stringResource(R.string.network_unavailable),
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onError,
                     style = MaterialTheme.typography.titleMedium
@@ -56,15 +56,14 @@ fun <T> ScreenWrapper(
             }
         }
 
-        Box(modifier.weight(1f)) {
+        Box(modifier) {
             when (uiState) {
                 is UiState.Failure -> ErrorView(
-                    modifier = Modifier.fillMaxSize(),
                     message = stringResource(id = R.string.generic_error),
                     exception = uiState.exception
                 )
 
-                UiState.Loading -> FullScreenProgressIndicator(Modifier.fillMaxSize())
+                UiState.Loading -> FullScreenProgressIndicator()
                 is UiState.Success -> contents(modifier, uiState.data)
             }
         }
@@ -75,7 +74,7 @@ fun <T> ScreenWrapper(
 @Composable
 fun ScreenWrapperPreview() {
     MaterialTheme {
-        Surface(Modifier.fillMaxSize()) {
+        Surface() {
             ScreenWrapper(modifier = Modifier.fillMaxSize(),
                 uiState = UiState.Success(Unit),
                 showDisconnectedMessage = true,

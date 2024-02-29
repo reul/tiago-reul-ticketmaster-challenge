@@ -55,6 +55,8 @@ The sample project fetches images from the [Shibe.online API](https://shibe.onli
 
 ## Testing
 
+Some very simple Unit and UI tests were included.
+
 Both the `domain` and `data` modules include tests using the following frameworks:
 
 - [Kotlin Test](https://kotlinlang.org/api/latest/kotlin.test/) for writing tests in Kotlin.

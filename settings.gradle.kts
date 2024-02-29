@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Clean Architecture Example"
+rootProject.name = "Ticketmaster Code Challenge"
 include(":app")
 include(":data")
 include(":domain")
